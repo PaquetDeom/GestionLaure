@@ -1,9 +1,11 @@
 package main;
 
 import java.awt.EventQueue;
+import java.io.IOException;
 
-import fr.paquet.dataBase.Connect;
-import fr.paquet.dataBase.PrepareConnection;
+import org.hsqldb.server.ServerAcl.AclFormatException;
+
+import fr.paquet.dataBase.CreateDB;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
@@ -13,27 +15,29 @@ public class Main {
 	/**
 	 * Demmarrage de l application.
 	 */
+
+	private static CreateDB dataBase = null;
+
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
+
+				// Démarage du server de base de donnée
 				try {
-
-					// creation de la mainFrame
-					MainFrame mainFrame = MainFrame.getUniqInstance();
-					mainFrame.setVisible(true);
-
-					// identification de l'utilisateur
-					prepareIdentification();
-
-				} catch (Exception e) {
-
-					// fermeture avec erreur
-					new AlertWindow(AlertType.ERREUR, "Fatal Erreur");
-					e.printStackTrace();
+					getDataBase().getUniqinstance();
+				} catch (IOException | AclFormatException e) {
+					new AlertWindow(AlertType.ERREUR, "La base de donnée n'a pas été créée");
 					FermetureAvecErreur();
-
+					e.printStackTrace();
 				}
+
+				CreateDB.getServer().start();
+
+				// creation de la mainFrame
+				MainFrame mainFrame = MainFrame.getUniqInstance();
+				mainFrame.setVisible(true);
+
 			}
 		});
 	}
@@ -44,6 +48,7 @@ public class Main {
 			@Override
 			public void buttonClick(String button) {
 				if (button.equals("Oui"))
+					FermetureDeLaDB();
 					FermetureSansErreur();
 
 			}
@@ -60,21 +65,12 @@ public class Main {
 		System.exit(1);
 	}
 
-	public static void prepareIdentification() {
+	public static void FermetureDeLaDB() {
+		CreateDB.getServer().stop();
+	}
 
-		try {
-
-			Connect.setPConnexion(new PrepareConnection(null));
-			Connect.getPConnexion().prepareUser();
-			Connect.getPConnexion().prepareAuteur();
-
-		} catch (Exception e) {
-
-			e.printStackTrace();
-			new AlertWindow(AlertType.ERREUR, "Connexion à la base impossible - vérifier votre connexion internet");
-			FermetureAvecErreur();
-
-		}
+	private static CreateDB getDataBase() {
+		return dataBase;
 	}
 
 }
