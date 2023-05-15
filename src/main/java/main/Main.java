@@ -16,8 +16,6 @@ public class Main {
 	 * Demmarrage de l application.
 	 */
 
-	private static CreateDB dataBase = null;
-
 	public static void main(String[] args) {
 
 		EventQueue.invokeLater(new Runnable() {
@@ -25,7 +23,8 @@ public class Main {
 
 				// Démarage du server de base de donnée
 				try {
-					getDataBase().getUniqinstance();
+					CreateDB.getUniqinstance();
+
 				} catch (IOException | AclFormatException e) {
 					new AlertWindow(AlertType.ERREUR, "La base de donnée n'a pas été créée");
 					FermetureAvecErreur();
@@ -49,7 +48,7 @@ public class Main {
 			public void buttonClick(String button) {
 				if (button.equals("Oui"))
 					FermetureDeLaDB();
-					FermetureSansErreur();
+				FermetureSansErreur();
 
 			}
 		});
@@ -67,10 +66,6 @@ public class Main {
 
 	public static void FermetureDeLaDB() {
 		CreateDB.getServer().stop();
-	}
-
-	private static CreateDB getDataBase() {
-		return dataBase;
 	}
 
 }

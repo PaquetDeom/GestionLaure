@@ -22,7 +22,7 @@ public class CreateDB {
 
 	}
 
-	public CreateDB getUniqinstance() throws IOException, AclFormatException {
+	public static CreateDB getUniqinstance() throws IOException, AclFormatException {
 
 		if (CreateDB.createDB == null)
 			CreateDB.createDB = new CreateDB();
@@ -44,8 +44,8 @@ public class CreateDB {
 	}
 
 	public static void setProperties(HsqlProperties properties) {
-		properties.setProperty("server.database.0", "file:./target/classes/hsql/r408;user=r408;password=Login5340");
-		properties.setProperty("server.dbname.0", "R408");
+		properties.setProperty("server.database.0", "file:./target/classes/dataBase/gestionLaure;user=gestionLaure;password=Login5340");
+		properties.setProperty("server.dbname.0", "gestionLaure");
 		properties.setProperty("server.port", "5434");
 		CreateDB.properties = properties;
 	}
