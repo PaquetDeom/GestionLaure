@@ -5,6 +5,10 @@ import java.awt.event.ActionEvent;
 import javax.swing.ImageIcon;
 import javax.swing.JMenuItem;
 
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
+import main.Main;
+
 public class ActionQuitter extends ActionBDA {
 
 	/**
@@ -19,7 +23,7 @@ public class ActionQuitter extends ActionBDA {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-
+		Main.Fermeture();
 	}
 
 	@Override

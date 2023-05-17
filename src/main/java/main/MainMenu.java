@@ -26,8 +26,6 @@ public class MainMenu extends JMenuBar {
 	private MainMenu() {
 		super();
 
-		getJMenu(getActionNouveau().getParentMenuName()).add(getActionNouveau().getJMenuItem());
-		getJMenu(getActionSave().getParentMenuName()).add(getActionSave().getJMenuItem());
 		getJMenu(getActionQuitter().getParentMenuName()).add(getActionQuitter().getJMenuItem());
 
 	}
@@ -38,21 +36,6 @@ public class MainMenu extends JMenuBar {
 		if (actionQuitter == null)
 			actionQuitter = new ActionQuitter();
 		return actionQuitter;
-	}
-	private ActionSave actionSave = null;
-
-	private ActionBDA getActionSave() {
-		if (actionSave == null)
-			actionSave = new ActionSave();
-		return actionSave;
-	}
-
-	private ActionNouveau actionNouveau = null;
-
-	private ActionBDA getActionNouveau() {
-		if (actionNouveau == null)
-			actionNouveau = new ActionNouveau();
-		return actionNouveau;
 	}
 
 	public static MainMenu getUniqInstance() {
