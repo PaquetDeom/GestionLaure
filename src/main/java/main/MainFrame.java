@@ -34,7 +34,7 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
 	private MainFrame() {
 
-		super("Logiciel d'écriture pédagogique");
+		super("Logiciel de gestion de patientelle et clientelle");
 
 		setPanelOuverture();
 		addWindowListener(this);
@@ -61,6 +61,7 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 					e.printStackTrace();
 				}
 				g.drawImage(img.getScaledInstance(getWidth(), -1, Image.SCALE_SMOOTH), 0, 0, null);
+				
 			}
 
 		};
@@ -153,7 +154,6 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 			} catch (Exception e) {
 				new AlertWindow(AlertType.ERREUR, "Sauvegarde de la sequence impossible");
 				e.printStackTrace();
-				Main.FermetureDeLaDB();
 				Main.FermetureAvecErreur();
 			}
 		}

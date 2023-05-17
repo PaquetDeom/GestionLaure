@@ -47,25 +47,25 @@ public class Main {
 			@Override
 			public void buttonClick(String button) {
 				if (button.equals("Oui"))
-					FermetureDeLaDB();
-				FermetureSansErreur();
+					FermetureSansErreur();
 
 			}
 		});
 	}
 
 	public static void FermetureSansErreur() {
-
+		FermetureDeLaDB();
 		System.exit(0);
 	}
 
 	public static void FermetureAvecErreur() {
-
+		FermetureDeLaDB();
 		System.exit(1);
 	}
 
-	public static void FermetureDeLaDB() {
-		CreateDB.getServer().stop();
+	private static void FermetureDeLaDB() {
+		if (CreateDB.getServer() != null)
+			CreateDB.getServer().stop();
 	}
 
 }
