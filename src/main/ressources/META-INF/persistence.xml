@@ -17,13 +17,13 @@
 			<property name="javax.persistence.jdbc.user" value="gestionLaure" />
 
 
-			<!-- <property name="eclipselink.ddl-generation" value="drop-and-create-tables" 
+			<!-- <property name="eclipselink.ddl-generation" value="none" 
 				/> -->
 
 			<property name="javax.persistence.jdbc.password"
 				value="Login5340" />
 
-			<property name="eclipselink.ddl-generation" value="none" />
+			<property name="eclipselink.ddl-generation" value="drop-and-create-tables" />
 
 
 			<property name="eclipselink.ddl-generation.output-mode"
