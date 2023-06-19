@@ -16,6 +16,7 @@ import javax.swing.*;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.ihm.commun.explorerInternet.SwingBrowserJavaFxWeb;
 
 public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
@@ -34,14 +35,14 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
 	private MainFrame() {
 
-		super("Logiciel de gestion de patientelle et clientelle");
+		super("Logiciel de gestion de projet");
 
 		setPanelOuverture();
 		addWindowListener(this);
 		setAlwaysOnTop(false);
 		setMinimumSize(new Dimension(900, 600));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		add(getPanelOuverture());
+		add(getBrowser());
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 
@@ -77,6 +78,20 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
 		add(getPanelOuverture());
 		revalidate();
+	}
+	
+	public void affichePanel() {
+		add(getBrowser());
+		revalidate();
+	}
+	
+	private static SwingBrowserJavaFxWeb browser = null;
+	
+	private static SwingBrowserJavaFxWeb getBrowser() {
+		if(MainFrame.browser == null)
+			MainFrame.browser = new SwingBrowserJavaFxWeb("https://calendar.google.com/calendar/u/0/r/month/2023/6/1?pli=1");
+		
+		return MainFrame.browser;
 	}
 
 	/**

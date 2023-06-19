@@ -33,10 +33,10 @@ import java.util.TimeZone;
 public class Calendrier {
 
 	/**
-	 * https://github.com/google/google-api-java-client-samples
-	 * Assurez-vous de spécifier le nom de votre application. Si le nom de
-	 * l'application est {@code null} ou vide, l'application enregistrera un
-	 * avertissement. Format suggéré est "MyCompany-ProductName/1.0".
+	 * https://github.com/google/google-api-java-client-samples Assurez-vous de
+	 * spécifier le nom de votre application. Si le nom de l'application est
+	 * {@code null} ou vide, l'application enregistrera un avertissement. Format
+	 * suggéré est "MyCompany-ProductName/1.0".
 	 */
 	private static final String APPLICATION_NAME = "gestionlaure";
 
@@ -69,7 +69,8 @@ public class Calendrier {
 	 */
 	private static Credential authorize() throws Exception {
 
-		InputStreamReader streamReader = new InputStreamReader(Calendrier.class.getResourceAsStream("client_secrets.json"));
+		InputStreamReader streamReader = new InputStreamReader(
+				Calendrier.class.getResourceAsStream("client_secrets.json"));
 		// load client secrets
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, streamReader);
 		if (clientSecrets.getDetails().getClientId().startsWith("Enter")
@@ -79,7 +80,7 @@ public class Calendrier {
 			System.exit(1);
 		}
 		// configurer le flux de code d'autorisation
-				
+
 		GoogleAuthorizationCodeFlow flow = new GoogleAuthorizationCodeFlow.Builder(httpTransport, JSON_FACTORY,
 				clientSecrets, Collections.singleton(CalendarScopes.CALENDAR)).setDataStoreFactory(dataStoreFactory)
 						.build();
@@ -223,4 +224,5 @@ public class Calendrier {
 		View.header("Delete Calendar");
 		client.calendars().delete(calendar.getId()).execute();
 	}
+
 }
