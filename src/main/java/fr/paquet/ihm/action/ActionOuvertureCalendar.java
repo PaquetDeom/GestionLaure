@@ -10,6 +10,7 @@ import javax.swing.JMenuItem;
 
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.traitement.calendrier.Calendrier;
 
 public class ActionOuvertureCalendar extends ActionBDA {
 	
@@ -22,7 +23,7 @@ public class ActionOuvertureCalendar extends ActionBDA {
 	public void actionPerformed(ActionEvent e) {
 		if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
 		    try {
-				Desktop.getDesktop().browse(new URI("https://calendar.google.com/calendar/u/0/r"));
+				Desktop.getDesktop().browse(new URI(Calendrier.getUri()));
 			} catch (IOException e1) {
 				new AlertWindow(AlertType.ERREUR, "Erreur lors de la conexion au calendrier");
 				e1.printStackTrace();

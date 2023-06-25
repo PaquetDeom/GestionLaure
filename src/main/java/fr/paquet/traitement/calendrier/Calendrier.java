@@ -24,14 +24,23 @@ import com.google.api.services.calendar.model.Event;
 import com.google.api.services.calendar.model.EventDateTime;
 import com.google.api.services.calendar.model.Events;
 
+import fr.paquet.ihm.alert.AlertListener;
+import fr.paquet.ihm.alert.AlertType;
+import fr.paquet.ihm.alert.AlertWindow;
+
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.Date;
 import java.util.TimeZone;
 
+import org.eclipse.swt.events.DisposeEvent;
+
 public class Calendrier {
 
+	public static String getUri() {
+		return "https://calendar.google.com/calendar/u/0/r";
+	}
 	/**
 	 * https://github.com/google/google-api-java-client-samples Assurez-vous de
 	 * spécifier le nom de votre application. Si le nom de l'application est
@@ -70,7 +79,7 @@ public class Calendrier {
 	private static Credential authorize() throws Exception {
 
 		InputStreamReader streamReader = new InputStreamReader(
-				Calendrier.class.getClassLoader().getResourceAsStream("./client_secrets.json"));
+				Calendrier.class.getClassLoader().getResourceAsStream("./clients_secrets.json"));
 		// load client secrets
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, streamReader);
 		if (clientSecrets.getDetails().getClientId().startsWith("Enter")
@@ -116,6 +125,19 @@ public class Calendrier {
 		} catch (IOException e) {
 			System.err.println(e.getMessage());
 		} catch (Throwable t) {
+			new AlertWindow(AlertType.QUESTION, "Voulez-vous connecter votre application à google calendar",
+					new AlertListener() {
+
+						@Override
+						public void buttonClick(String button) {
+							if (button.equals("Non")) {
+								new AlertWindow(AlertType.INFORMATION,
+										"Votre application à besoin d'être connectée à google");
+								//Fermer l'application
+								//Oui Afficher la procédure de création de l'api google
+							}
+						}
+					});
 			t.printStackTrace();
 		}
 		System.exit(1);

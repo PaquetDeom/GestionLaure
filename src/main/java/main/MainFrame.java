@@ -44,8 +44,6 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 		setMinimumSize(new Dimension(900, 600));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
 		add(getPanelOuverture());
-		
-				
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 
