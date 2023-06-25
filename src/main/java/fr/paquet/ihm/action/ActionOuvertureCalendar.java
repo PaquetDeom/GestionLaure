@@ -14,6 +14,11 @@ import fr.paquet.traitement.calendrier.Calendrier;
 
 public class ActionOuvertureCalendar extends ActionBDA {
 	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ActionOuvertureCalendar() {
 		super();
 		putValue(NAME, getName());

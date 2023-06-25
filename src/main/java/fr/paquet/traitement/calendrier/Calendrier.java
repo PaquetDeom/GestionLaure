@@ -34,13 +34,12 @@ import java.util.Collections;
 import java.util.Date;
 import java.util.TimeZone;
 
-import org.eclipse.swt.events.DisposeEvent;
-
 public class Calendrier {
 
 	public static String getUri() {
 		return "https://calendar.google.com/calendar/u/0/r";
 	}
+
 	/**
 	 * https://github.com/google/google-api-java-client-samples Assurez-vous de
 	 * spécifier le nom de votre application. Si le nom de l'application est
@@ -133,8 +132,8 @@ public class Calendrier {
 							if (button.equals("Non")) {
 								new AlertWindow(AlertType.INFORMATION,
 										"Votre application à besoin d'être connectée à google");
-								//Fermer l'application
-								//Oui Afficher la procédure de création de l'api google
+								// Fermer l'application
+								// Oui Afficher la procédure de création de l'api google
 							}
 						}
 					});
