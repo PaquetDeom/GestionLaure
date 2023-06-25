@@ -1,6 +1,7 @@
 package main;
 
 import java.awt.Component;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -8,15 +9,15 @@ import java.awt.Image;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
 import java.io.IOException;
+import java.net.URI;
+import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
-import fr.paquet.ihm.commun.explorerInternet.SwingBrowserJavaFxWeb;
 
 public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
@@ -42,7 +43,9 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 		setAlwaysOnTop(false);
 		setMinimumSize(new Dimension(900, 600));
 		setExtendedState(JFrame.MAXIMIZED_BOTH);
-		add(getBrowser());
+		add(getPanelOuverture());
+		
+				
 		setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
 	}
 
@@ -57,7 +60,7 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 				super.paintComponent(g);
 				BufferedImage img = null;
 				try {
-					img = ImageIO.read(new File("./target/classes/images/presentation.jpg"));
+					img = ImageIO.read(MainFrame.class.getClassLoader().getResourceAsStream("./images/presentation.jpg"));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
@@ -81,19 +84,10 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 	}
 	
 	public void affichePanel() {
-		add(getBrowser());
+		
 		revalidate();
 	}
-	
-	private static SwingBrowserJavaFxWeb browser = null;
-	
-	private static SwingBrowserJavaFxWeb getBrowser() {
-		if(MainFrame.browser == null)
-			MainFrame.browser = new SwingBrowserJavaFxWeb("https://calendar.google.com/calendar/u/0/r/month/2023/6/1?pli=1");
 		
-		return MainFrame.browser;
-	}
-
 	/**
 	 * 
 	 * @return l'instance unique de la class<br/>

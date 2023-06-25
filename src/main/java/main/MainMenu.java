@@ -27,6 +27,7 @@ public class MainMenu extends JMenuBar {
 		super();
 
 		getJMenu(getActionQuitter().getParentMenuName()).add(getActionQuitter().getJMenuItem());
+		getJMenu(getOuvertureCalandar().getParentMenuName()).add(getOuvertureCalandar().getJMenuItem());
 
 	}
 
@@ -36,6 +37,14 @@ public class MainMenu extends JMenuBar {
 		if (actionQuitter == null)
 			actionQuitter = new ActionQuitter();
 		return actionQuitter;
+	}
+	
+	private ActionOuvertureCalendar actionOuvertureCalendar = null;
+	
+	private ActionBDA getOuvertureCalandar() {
+		if (actionOuvertureCalendar == null)
+			actionOuvertureCalendar = new ActionOuvertureCalendar();
+		return actionOuvertureCalendar;
 	}
 
 	public static MainMenu getUniqInstance() {

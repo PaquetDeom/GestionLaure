@@ -70,7 +70,7 @@ public class Calendrier {
 	private static Credential authorize() throws Exception {
 
 		InputStreamReader streamReader = new InputStreamReader(
-				Calendrier.class.getResourceAsStream("client_secrets.json"));
+				Calendrier.class.getClassLoader().getResourceAsStream("./client_secrets.json"));
 		// load client secrets
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, streamReader);
 		if (clientSecrets.getDetails().getClientId().startsWith("Enter")
