@@ -33,11 +33,24 @@ import java.io.InputStreamReader;
 import java.util.Collections;
 import java.util.Date;
 import java.util.TimeZone;
+import java.util.regex.Pattern;
 
 public class Calendrier {
 
-	public static String getUri() {
-		return "https://calendar.google.com/calendar/u/0/r";
+	private String uriCalendar = null;
+
+	private void setUriCalendar(String uri) {
+		this.uriCalendar = uri;
+	}
+
+	public Calendrier(String uri) {
+		super();
+		setUriCalendar(uri);
+	}
+
+	public String getUri() {
+		// "https://calendar.google.com/calendar/u/0/r"
+		return this.uriCalendar;
 	}
 
 	/**
@@ -78,7 +91,7 @@ public class Calendrier {
 	private static Credential authorize() throws Exception {
 
 		InputStreamReader streamReader = new InputStreamReader(
-				Calendrier.class.getClassLoader().getResourceAsStream("./clients_secrets.json"));
+				Calendrier.class.getClassLoader().getResourceAsStream("./client_secrets.json"));
 		// load client secrets
 		GoogleClientSecrets clientSecrets = GoogleClientSecrets.load(JSON_FACTORY, streamReader);
 		if (clientSecrets.getDetails().getClientId().startsWith("Enter")

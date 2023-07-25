@@ -1,7 +1,6 @@
 package main;
 
 import java.awt.Component;
-import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
 import java.awt.Graphics;
@@ -10,14 +9,13 @@ import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.traitement.calendrier.Calendrier;
 
 public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
@@ -33,6 +31,7 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 	private static final long serialVersionUID = 1L;
 	private static MainFrame mainFrame = null;
 	private JPanel panelOuverture = null;
+	private Calendrier calendrier = null;
 
 	private MainFrame() {
 
@@ -58,12 +57,13 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 				super.paintComponent(g);
 				BufferedImage img = null;
 				try {
-					img = ImageIO.read(MainFrame.class.getClassLoader().getResourceAsStream("./images/presentation.jpg"));
+					img = ImageIO
+							.read(MainFrame.class.getClassLoader().getResourceAsStream("./images/presentation.jpg"));
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
 				g.drawImage(img.getScaledInstance(getWidth(), -1, Image.SCALE_SMOOTH), 0, 0, null);
-				
+
 			}
 
 		};
@@ -80,12 +80,12 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 		add(getPanelOuverture());
 		revalidate();
 	}
-	
+
 	public void affichePanel() {
-		
+
 		revalidate();
 	}
-		
+
 	/**
 	 * 
 	 * @return l'instance unique de la class<br/>
@@ -166,6 +166,14 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 		}
 		if (button.equals("Non"))
 			Main.FermetureSansErreur();
+	}
+
+	public Calendrier getCalendrier() {
+		return calendrier;
+	}
+
+	public void setCalendrier(Calendrier calendrier) {
+		this.calendrier = calendrier;
 	}
 
 }
