@@ -1,4 +1,4 @@
-package fr.paquet.ihm.gestionnaire.sequence;
+package fr.paquet.ihm.gestionnaire.projet;
 
 import java.awt.BorderLayout;
 import java.beans.PropertyChangeEvent;
@@ -16,11 +16,14 @@ import fr.paquet.ihm.commun.gestionnaire.JPanelGestionnaireRight;
 import fr.paquet.ihm.commun.gestionnaire.PanelLeftRight;
 import fr.paquet.ihm.commun.gestionnaire.SelectedEvent;
 import fr.paquet.ihm.commun.gestionnaire.UserObject;
+import fr.paquet.ihm.gestionnaire.sequence.JDialogGestionnaireOuvrir;
+import fr.paquet.ihm.gestionnaire.sequence.JPanelGestionnaireOuvrirRight;
+import fr.paquet.ihm.gestionnaire.sequence.SequenceVersion;
+import fr.paquet.ihm.gestionnaire.sequence.JPanelGestionnaireOuvrirRight.Buttonsuppr;
 import fr.paquet.ihm.style.StyleBorder;
 import fr.paquet.ihm.style.StyleColor;
 import fr.paquet.ihm.style.StyleFont;
 import fr.paquet.ihm.style.StyleTextDocument;
-import fr.paquet.sequence.SequenceVersion;
 
 public class JPanelGestionnaireOuvrirRight extends JPanelGestionnaireRight {
 

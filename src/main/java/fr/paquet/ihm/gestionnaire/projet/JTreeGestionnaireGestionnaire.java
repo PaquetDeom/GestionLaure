@@ -1,4 +1,4 @@
-package fr.paquet.ihm.gestionnaire.sequence;
+package fr.paquet.ihm.gestionnaire.projet;
 
 import java.util.List;
 
@@ -13,8 +13,9 @@ import fr.paquet.ihm.commun.gestionnaire.JTreeGestionnaire;
 import fr.paquet.ihm.commun.gestionnaire.SelectedEvent;
 import fr.paquet.ihm.commun.gestionnaire.SelectionListener;
 import fr.paquet.ihm.commun.gestionnaire.UserObject;
-import fr.paquet.referentiel.Referentiel;
-import fr.paquet.sequence.SequenceVersion;
+import fr.paquet.ihm.gestionnaire.sequence.GestionnaireTreeNodeGestionnaire;
+import fr.paquet.ihm.gestionnaire.sequence.Referentiel;
+import fr.paquet.ihm.gestionnaire.sequence.SequenceVersion;
 
 public class JTreeGestionnaireGestionnaire extends JTreeGestionnaire {
 

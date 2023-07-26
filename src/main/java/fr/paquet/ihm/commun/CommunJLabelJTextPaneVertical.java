@@ -63,7 +63,7 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel implements Pr
 		setPanelJTextArea(new JPanel());
 		Editable();
 
-		// listener
+		/** listener
 		getTextPane().addFocusListener(SequenceToolBar.getUniqintance());
 
 		if (MainFrame.getUniqInstance().getSequenceVersion() != null) {
@@ -75,7 +75,8 @@ public abstract class CommunJLabelJTextPaneVertical extends JPanel implements Pr
 		setLayout(new GridBagLayout());
 
 		// Ajout des Elements
-		affiche();
+		affiche();*/
+		//TODO
 	}
 
 	protected abstract void Editable();

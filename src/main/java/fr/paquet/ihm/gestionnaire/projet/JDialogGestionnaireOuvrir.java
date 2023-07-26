@@ -1,4 +1,4 @@
-package fr.paquet.ihm.gestionnaire.sequence;
+package fr.paquet.ihm.gestionnaire.projet;
 
 import java.awt.Component;
 import java.awt.GridBagConstraints;
@@ -15,14 +15,12 @@ import javax.swing.JSplitPane;
 import javax.swing.tree.DefaultTreeModel;
 import javax.swing.tree.MutableTreeNode;
 
-import fr.paquet.dataBase.Factory.sequence.SequenceVersionFactory;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
-import fr.paquet.ihm.nouveau.sequence.JDialogNewSequence;
 import fr.paquet.ihm.style.StyleBorder;
-import fr.paquet.referentiel.Referentiel;
-import fr.paquet.sequence.SequenceVersion;
+import fr.paquet.traitement.projet.Projet;
+import fr.paquet.traitement.projet.Seance;
 import main.MainFrame;
 
 public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener, AlertListener {
@@ -31,15 +29,14 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	private PrepareListSequence prepareListSequence = null;
-	private Referentiel referentiel = null;
+	private PrepareListProjet prepareListProjet = null;
 	private JButton buttonAnnul = new JButton("Fermer");
 
-	public JDialogGestionnaireOuvrir(Referentiel referentiel, boolean queMoi) {
+	public JDialogGestionnaireOuvrir() throws Exception {
 		super(MainFrame.getUniqInstance());
 
 		// construction de la fenetre
-		setTitle("Gestionnaire de séquence");
+		setTitle("Gestionnaire de projet");
 		setSize(1800, 600);
 		setResizable(true);
 		setLocationRelativeTo(null);
@@ -47,8 +44,7 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 		setAlwaysOnTop(false);
 
 		// set des Elements
-		setReferentiel(referentiel);
-		this.prepareListSequence = new PrepareListSequence(getReferentiel(), queMoi);
+		this.prepareListProjet = new PrepareListProjet(getProjets());
 		setJSplitPaneLeft(getJTreeGestionnaireGestionnaire());
 		setJSplitPaneRight(getJPanelGestionnaireRight());
 
@@ -142,8 +138,8 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 		return panel;
 	}
 
-	private List<SequenceVersion> getSequenceVersion() throws Exception {
-		return prepareListSequence.getSequenceVersions();
+	private List<Projet> getProjets() throws Exception {
+		return prepareListProjet.getProjets();
 	}
 
 	private JTreeGestionnaireGestionnaire jTreeGestionnaireGestionnaire = null;
@@ -173,16 +169,8 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 
 	}
 
-	private Referentiel getReferentiel() {
-		return referentiel;
-	}
-
-	private void setReferentiel(Referentiel referentiel) {
-		this.referentiel = referentiel;
-	}
-
-	private SequenceVersion getSequence() {
-		return (SequenceVersion) getJPanelGestionnaireRight().getObjectSelected();
+	private Seance getSeance() {
+		return (Seance) getJPanelGestionnaireRight().getObjectSelected();
 	}
 
 	@Override
@@ -195,8 +183,8 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 
 		if (buttonString.equals("Ouvrir")) {
 			try {
-				if (getSequence() != null) {
-					MainFrame.getUniqInstance().addPanel(getSequence(),null,null);
+				if (getSeance() != null) {
+					MainFrame.getUniqInstance().addPanel(getSeance(), null, null);
 					dispose();
 				} else
 					new AlertWindow(AlertType.ATTENTION, "Veuillez saisir une version de séquence");
@@ -208,7 +196,7 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 
 		if (buttonString.equals("Nouveau")) {
 
-			new JDialogNewSequence();
+			// TODO
 			dispose();
 		}
 
@@ -221,28 +209,29 @@ public class JDialogGestionnaireOuvrir extends JDialog implements ActionListener
 	@Override
 	public void buttonClick(String button) {
 
-		if (button.equals("Oui")) {
-
-			try {
-				
-				MainFrame.getUniqInstance().setSequenceVersion(null);
-				MainFrame.getUniqInstance().affichePanelOuverture();
-				
-				new SequenceVersionFactory().removeObject(getSequence());
-
-				// supprimer le noeud du Jtree
-				((DefaultTreeModel) getJTreeGestionnaireGestionnaire().getJTreeValue().getModel())
-						.removeNodeFromParent((MutableTreeNode) getJTreeGestionnaireGestionnaire().getJTreeValue()
-								.getSelectionPath().getLastPathComponent());
-
-				this.dispose();
-
-			} catch (Exception e) {
-				e.printStackTrace();
-				new AlertWindow(AlertType.ERREUR, "La séquence n'a pas été supprimer");
-			}
-		}
-
+		// TODO
+		/**
+		 * if (button.equals("Oui")) {
+		 * 
+		 * try {
+		 * 
+		 * MainFrame.getUniqInstance().setSequenceVersion(null);
+		 * MainFrame.getUniqInstance().affichePanelOuverture();
+		 * 
+		 * new SequenceVersionFactory().removeObject(getSequence());
+		 * 
+		 * // supprimer le noeud du Jtree ((DefaultTreeModel)
+		 * getJTreeGestionnaireGestionnaire().getJTreeValue().getModel())
+		 * .removeNodeFromParent((MutableTreeNode)
+		 * getJTreeGestionnaireGestionnaire().getJTreeValue()
+		 * .getSelectionPath().getLastPathComponent());
+		 * 
+		 * this.dispose();
+		 * 
+		 * } catch (Exception e) { e.printStackTrace(); new
+		 * AlertWindow(AlertType.ERREUR, "La séance n'a pas été supprimer"); } }
+		 * 
+		 */
 	}
 
 }

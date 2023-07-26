@@ -16,6 +16,7 @@ import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
 import fr.paquet.traitement.calendrier.Calendrier;
+import fr.paquet.traitement.projet.Seance;
 
 public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
@@ -174,6 +175,11 @@ public class MainFrame extends JFrame implements WindowListener, AlertListener {
 
 	public void setCalendrier(Calendrier calendrier) {
 		this.calendrier = calendrier;
+	}
+
+	public void addPanel(Seance seance, Object object, Object object2) {
+		// TODO Auto-generated method stub
+		
 	}
 
 }
