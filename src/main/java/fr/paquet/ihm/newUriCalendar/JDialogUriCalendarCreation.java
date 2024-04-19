@@ -58,8 +58,13 @@ public class JDialogUriCalendarCreation extends JDialog implements ActionListene
 		String buttontext = button.getText();
 
 		if (buttontext.equals("Valider")) {
-			MainFrame.getUniqInstance()
-					.setCalendrier(new Calendrier(getJPanelUriCalendarCreation().getcommunJPanelHorizontalJLabelJTexField().getText()));
+			try {
+				MainFrame.getUniqInstance().setCalendrier(new Calendrier(
+						getJPanelUriCalendarCreation().getcommunJPanelHorizontalJLabelJTexField().getText()));
+			} catch (Exception e) {
+				new AlertWindow(AlertType.ERREUR, e.getMessage());
+				e.printStackTrace();
+			}
 			try {
 				Desktop.getDesktop().browse(new URI(MainFrame.getUniqInstance().getCalendrier().getUri()));
 			} catch (IOException e1) {

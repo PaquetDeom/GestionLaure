@@ -7,6 +7,10 @@
 		transaction-type="RESOURCE_LOCAL">
 		<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
 
+		<class> fr.paquet.traitement.etablissement.Etablissement</class>
+		<class> fr.paquet.traitement.commun.Coordonnees</class>
+		<class> fr.paquet.traitement.discipline.Recrutement</class>
+		<class> fr.paquet.traitement.discipline.Affectation</class>
 		
 		<properties>
 			<property name="javax.persistence.jdbc.driver"
