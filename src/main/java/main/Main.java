@@ -6,9 +6,11 @@ import java.io.IOException;
 import org.hsqldb.server.ServerAcl.AclFormatException;
 
 import fr.paquet.dataBase.CreateDB;
+import fr.paquet.dataBase.factory.AffectationFactory;
 import fr.paquet.ihm.alert.AlertListener;
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
+import fr.paquet.traitement.discipline.Affectation;
 
 public class Main {
 

@@ -27,8 +27,8 @@ public class Affectation implements Discipline {
 
 	@Override
 	public void setCodeDiscipline(String codeDiscipline) throws Exception {
-		if (!Pattern.matches("[A-Z][0-9]{7}", codeDiscipline)) {
-			throw new IllegalArgumentException("Le Code disciline doit comporter une lettre majuscule et 4 choffres.");
+		if (!Pattern.matches("^[0-9]{4}[A-Z]$", codeDiscipline)) {
+			throw new IllegalArgumentException("Le Code d'affectation doit comporter 4 chiffres et une lettre.");
 		}
 		this.codeDiscipline = codeDiscipline;
 

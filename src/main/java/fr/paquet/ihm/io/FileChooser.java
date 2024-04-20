@@ -19,7 +19,7 @@ public class FileChooser extends JFileChooser {
 		super();
 
 		FileSystemView.getFileSystemView().getHomeDirectory();
-		this.addChoosableFileFilter(new FileNameExtensionFilter("*.pdf", "pdf"));
+		this.addChoosableFileFilter(new FileNameExtensionFilter("*.csv", "csv"));
 		this.setDialogTitle("Sauvegarde : ");
 		this.setFileSelectionMode(JFileChooser.FILES_ONLY);
 

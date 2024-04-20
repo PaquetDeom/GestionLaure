@@ -1,9 +1,12 @@
 package fr.paquet.traitement.etablissement;
 
+import java.util.List;
 import java.util.regex.Pattern;
 import javax.persistence.*;
 
 import fr.paquet.traitement.commun.Coordonnees;
+import fr.paquet.traitement.personnel.Perdir;
+import fr.paquet.traitement.personnel.Professeur;
 
 @Entity
 @Table(name = "ETABLISSEMENT")
@@ -26,7 +29,15 @@ public class Etablissement {
 	private String bassin = null;
 
 	@OneToOne
+	@JoinColumn(name = "coordonnees_id")
 	private Coordonnees coordonnees = null;
+
+	@OneToOne
+	@JoinColumn(name = "id")
+	private Perdir perdir = null;
+
+	@ManyToMany
+	private List<Professeur> professeurs = null;
 
 	// Constructeur vide
 	public Etablissement() {

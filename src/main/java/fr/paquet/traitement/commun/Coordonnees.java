@@ -10,25 +10,29 @@ public class Coordonnees {
 
 	// Attributs privés
 	@Id
-	@Column(name = "Code postal", length = 5)
-	private String codePostal = null;
+	@GeneratedValue
+	@Column(name = "coordonnees_id")
+	public long coordonnees_id = 0;
 
-	@Column(name = "Ligne 1", length = 255)
+	@Column(name = "cPostal", length = 5)
+	private String cPostal = null;
+
+	@Column(name = "Ligne_1", length = 255)
 	private String ligne1 = null;
 
-	@Column(name = "Ligne 2", length = 255)
+	@Column(name = "Ligne_2", length = 255)
 	private String ligne2 = null;
 
-	@Column(name = "Ligne 3", length = 255)
+	@Column(name = "Ligne_3", length = 255)
 	private String ligne3 = null;
 
 	@Column(name = "Commune", length = 255)
 	private String commune = null;
 
-	@Column(name = "Tel1", length = 10)
+	@Column(name = "Tel_1", length = 10)
 	private String nTelephone1 = null;
 
-	@Column(name = "Tel2", length = 10)
+	@Column(name = "Tel_2", length = 10)
 	private String nTelephone2 = null;
 
 	@Column(name = "mail", length = 255)
@@ -51,27 +55,33 @@ public class Coordonnees {
 	// Constructeur pour etablissement
 	public Coordonnees(String codePostal, String ligne1, String ligne2, String ligne3, String commune,
 			String nTelephone1, String courriel) throws Exception {
-		this();
+		this(nTelephone1, courriel);
 
 		setCodePostal(codePostal);
 		setLigne1(ligne1);
 		setLigne2(ligne2);
 		setLigne3(ligne3);
 		setCommune(commune);
+	}
+
+	// Constructeur pour personnel
+	public Coordonnees(String nTelephone1, String courriel) throws Exception {
+		this();
+
 		setNTelephone1(nTelephone1);
 		setCourriel(courriel);
 	}
 
 	// Getters et setters
 	public String getCodePostal() {
-		return codePostal;
+		return cPostal;
 	}
 
 	private void setCodePostal(String codePostal) throws Exception {
 		if (!Pattern.matches("[0-9]{5}", codePostal)) {
 			throw new IllegalArgumentException("Le code postal doit comporter 5 chiffres.");
 		}
-		this.codePostal = codePostal;
+		this.cPostal = codePostal;
 	}
 
 	public String getLigne1() {

@@ -1,7 +1,6 @@
 package fr.paquet.ihm.action;
 
 import java.awt.Desktop;
-import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -10,7 +9,6 @@ import java.net.URI;
 import java.net.URISyntaxException;
 
 import javax.swing.JMenuItem;
-import javax.swing.KeyStroke;
 
 import fr.paquet.ihm.alert.AlertType;
 import fr.paquet.ihm.alert.AlertWindow;
@@ -27,8 +25,6 @@ public class ActionOuvertureCalendar extends ActionBDA implements PropertyChange
 	public ActionOuvertureCalendar() {
 		super();
 		putValue(NAME, getName());
-		putValue(ACCELERATOR_KEY,
-				KeyStroke.getKeyStroke('A', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
 		MainFrame.getUniqInstance().addPropertyChangeListener(this);
 	}
 
@@ -76,7 +72,7 @@ public class ActionOuvertureCalendar extends ActionBDA implements PropertyChange
 		JMenuItem mItem = new JMenuItem(this);
 		return mItem;
 	}
-	
+
 	@Override
 	public void propertyChange(PropertyChangeEvent arg0) {
 		Enable();

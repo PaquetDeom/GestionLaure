@@ -28,9 +28,18 @@ public class MainMenu extends JMenuBar {
 
 		getJMenu(getActionQuitter().getParentMenuName()).add(getActionQuitter().getJMenuItem());
 		getJMenu(getOuvertureCalandar().getParentMenuName()).add(getOuvertureCalandar().getJMenuItem());
+		getJMenu(getActionIntegrationDB().getParentMenuName()).add(getActionIntegrationDB().getJMenuItem());
 
 	}
 
+	private ActionIntegrationDB actionIntegrationDB = null;
+	
+	private ActionBDA getActionIntegrationDB() {
+		if (actionIntegrationDB == null)
+			actionIntegrationDB = new ActionIntegrationDB();
+		return actionIntegrationDB;
+	}
+	
 	private ActionQuitter actionQuitter = null;
 
 	private ActionBDA getActionQuitter() {

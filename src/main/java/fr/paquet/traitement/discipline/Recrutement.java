@@ -27,8 +27,8 @@ public class Recrutement implements Discipline {
 
 	@Override
 	public void setCodeDiscipline(String codeDiscipline) throws Exception {
-		if (!Pattern.matches("[A-Z][0-9]{7}", codeDiscipline)) {
-			throw new IllegalArgumentException("Le Code disciline doit comporter une lettre majuscule et 4 choffres.");
+		if (!Pattern.matches("^[A-Z][0-9]{4}$", codeDiscipline)) {
+			throw new IllegalArgumentException("Le Code de recrutement doit comporter une lettre majuscule et 4 chiffres.");
 		}
 		this.codeDiscipline = codeDiscipline;
 
